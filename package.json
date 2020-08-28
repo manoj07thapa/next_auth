@@ -1,15 +1,27 @@
 {
-  "name": "brunu-test",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
-  },
-  "dependencies": {
-    "next": "9.5.2",
-    "react": "16.13.1",
-    "react-dom": "16.13.1"
-  }
+	"name": "brunu-test",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": " node ./database-test.js && next dev",
+		"build": "next build",
+		"start": "next start",
+		"mock-server": "json-server --watch ./db.json -p 4001 -d 3000"
+	},
+	"dependencies": {
+		"@material-ui/core": "^4.11.0",
+		"isomorphic-unfetch": "^3.0.0",
+		"next": "9.5.2",
+		"react": "16.13.1",
+		"react-dom": "16.13.1",
+		"sqlite": "^4.0.14",
+		"sqlite3": "^5.0.0"
+	},
+	"devDependencies": {
+		"@babel/plugin-proposal-optional-chaining": "^7.11.0",
+		"@types/node": "^14.6.0",
+		"@types/react": "^16.9.47",
+		"json-server": "^0.16.1",
+		"typescript": "^4.0.2"
+	}
 }
