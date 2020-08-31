@@ -1,0 +1,30 @@
+import { NextPageContext } from 'next';
+import Router from 'next/router';
+import fetch from 'isomorphic-unfetch';
+
+export async function fetchDataFromServer(url: string, ctx: NextPageContext) {
+	const cookie = ctx.req.headers.cookie;
+
+	const resp = await fetch(url, {
+		headers: {
+			cookie: cookie!
+		}
+	});
+	/**Router cannot be used in server since  getInitialProps runs on server
+     * so we use Router if this code is not running on server by using context or ctx
+     */
+	if (resp.status === 401 && !ctx.req) {
+		Router.replace('/login');
+		return {};
+	}
+	if (resp.status === 401 && ctx.req) {
+		ctx.res.writeHead(302, {
+			location: 'http://localhost:3000/login'
+		});
+		ctx.res.end();
+		return;
+	}
+
+	const json = await resp.json();
+	return json;
+}

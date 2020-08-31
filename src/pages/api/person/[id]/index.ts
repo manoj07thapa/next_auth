@@ -8,7 +8,7 @@ export default async function getPersonById(req: NextApiRequest, res: NextApiRes
 	if (req.method === 'PUT') {
 		const statement = await db.prepare('UPDATE person SET name=?,email=? where id=?');
 		const result = await statement.run(req.body.name, req.body.email, req.query.id);
-		result.finalize();
+		result.stmt.finalize();
 	}
 	const person = await db.get('select * from person where id=?', [ req.query.id ]);
 	res.json(person);

@@ -5,7 +5,6 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { listenerCount } from 'process';
 import fetch from 'isomorphic-unfetch';
 
 export default function Vehicles({ list }) {
